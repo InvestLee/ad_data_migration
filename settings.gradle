@@ -1,1 +1,3 @@
 rootProject.name = 'ad-data-migration'
+include 'api-dsp-legacy'
+
