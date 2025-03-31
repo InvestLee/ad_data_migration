@@ -17,3 +17,13 @@ services:
       - "5436:5432"
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PW}
+  rabbitmq:
+    image: rabbitmq:3.13.7-management
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PW}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}

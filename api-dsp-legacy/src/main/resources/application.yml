@@ -20,9 +20,9 @@ spring:
             spring.rabbitmq:
               host: localhost
               port: 5673
-              username: ruser
+              username: ${RABBITMQ_USER}
               password: ${RABBITMQ_PW}
-              virtual-host: legacy
+              virtual-host: ${RABBITMQ_VHOST}
       bindings:
         legacy-rabbit-out:
           binder: legacy-rabbit
