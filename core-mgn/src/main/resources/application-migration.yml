@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    legacy-db:
+      hikari:
+        jdbc-url: jdbc:mysql://localhost:3316/legacy
+        username: root
+        password: ${MYSQL_PW}
+      properties:
+        hibernate:
+          hbm2ddl.auto: validate
+          show_sql: false
+          physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+    advance-db:
+      hikari:
+        jdbc-url: jdbc:postgresql://localhost:5436/postgres
+        username: postgres
+        password: ${POSTGRES_PW}
+      properties:
+        hibernate:
+          hbm2ddl.auto: update
+          show_sql: false
+          physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+          jdbc.batch_size: 300
+          order_inserts: true
+          order_updates: true

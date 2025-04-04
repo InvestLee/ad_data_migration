@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public record KeywordResponse(
         Long id,
         String text,
-        Long adGroupId,
+        Long groupId,
         LocalDateTime createdAt,
         LocalDateTime deletedAt) {
     public static KeywordResponse from(KeywordResult keyword) {

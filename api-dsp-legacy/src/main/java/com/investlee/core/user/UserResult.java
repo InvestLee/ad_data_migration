@@ -1,6 +1,6 @@
 package com.investlee.core.user;
 
-import com.investlee.domain.user.UserEntity;
+import com.investlee.domain.user.LegacyUserEntity;
 
 import java.time.LocalDateTime;
 
@@ -10,12 +10,12 @@ public record UserResult(
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime deletedAt) {
-    public static UserResult from(UserEntity userEntity) {
+    public static UserResult from(LegacyUserEntity legacyUserEntity) {
         return new UserResult(
-                userEntity.getId(),
-                userEntity.getName(),
-                userEntity.getCreatedAt(),
-                userEntity.getUpdatedAt(),
-                userEntity.getDeletedAt());
+                legacyUserEntity.getId(),
+                legacyUserEntity.getName(),
+                legacyUserEntity.getCreatedAt(),
+                legacyUserEntity.getUpdatedAt(),
+                legacyUserEntity.getDeletedAt());
     }
 }

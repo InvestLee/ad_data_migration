@@ -1,6 +1,6 @@
 package com.investlee.core.group;
 
-import com.investlee.domain.group.GroupEntity;
+import com.investlee.domain.group.LegacyGroupEntity;
 
 import java.time.LocalDateTime;
 
@@ -13,15 +13,15 @@ public record GroupResult(
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime deletedAt) {
-    public static GroupResult from(GroupEntity groupEntity) {
+    public static GroupResult from(LegacyGroupEntity legacyGroupEntity) {
         return new GroupResult(
-                groupEntity.getId(),
-                groupEntity.getName(),
-                groupEntity.getCampaignId(),
-                groupEntity.getUserId(),
-                groupEntity.getLinkUrl(),
-                groupEntity.getCreatedAt(),
-                groupEntity.getUpdatedAt(),
-                groupEntity.getDeletedAt());
+                legacyGroupEntity.getId(),
+                legacyGroupEntity.getName(),
+                legacyGroupEntity.getCampaignId(),
+                legacyGroupEntity.getUserId(),
+                legacyGroupEntity.getLinkUrl(),
+                legacyGroupEntity.getCreatedAt(),
+                legacyGroupEntity.getUpdatedAt(),
+                legacyGroupEntity.getDeletedAt());
     }
 }

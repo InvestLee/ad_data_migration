@@ -1,6 +1,6 @@
 package com.investlee.core.keyword;
 
-import com.investlee.domain.keyword.KeywordEntity;
+import com.investlee.domain.keyword.LegacyKeywordEntity;
 
 import java.time.LocalDateTime;
 
@@ -11,13 +11,13 @@ public record KeywordResult(
         Long userId,
         LocalDateTime createdAt,
         LocalDateTime deletedAt) {
-    public static KeywordResult from(KeywordEntity keywordEntity) {
+    public static KeywordResult from(LegacyKeywordEntity legacyKeywordEntity) {
         return new KeywordResult(
-                keywordEntity.getId(),
-                keywordEntity.getText(),
-                keywordEntity.getGroupId(),
-                keywordEntity.getUserId(),
-                keywordEntity.getCreatedAt(),
-                keywordEntity.getDeletedAt());
+                legacyKeywordEntity.getId(),
+                legacyKeywordEntity.getText(),
+                legacyKeywordEntity.getGroupId(),
+                legacyKeywordEntity.getUserId(),
+                legacyKeywordEntity.getCreatedAt(),
+                legacyKeywordEntity.getDeletedAt());
     }
 }

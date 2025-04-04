@@ -1,0 +1,32 @@
+server:
+  port: 8083
+spring:
+  profiles:
+    include: migration
+  jpa:
+    legacy-db:
+      hikari:
+        maximum-pool-size: 50
+    advance-db:
+      hikari:
+        maximum-pool-size: 50
+  cloud:
+    stream:
+      binders:
+        legacy-rabbit:
+          type: rabbit
+          environment:
+            spring.rabbitmq:
+              host: localhost
+              port: 5673
+              username: ${RABBITMQ_USER}
+              password: ${RABBITMQ_PW}
+              virtual-host: ${RABBITMQ_VHOST}
+      bindings:
+        legacyConsumer-in-0:
+          binder: legacy-rabbit
+          destination: legacy-topic
+          group: migration
+logging:
+  file:
+    name: logs/gradual.log

@@ -1,7 +1,7 @@
 package com.investlee.core.group;
 
-import com.investlee.domain.group.GroupEntity;
-import com.investlee.domain.group.GroupRepository;
+import com.investlee.domain.group.LegacyGroupEntity;
+import com.investlee.domain.group.LegacyGroupRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,45 +11,45 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class GroupService {
 
-    private final GroupRepository groupRepository;
+    private final LegacyGroupRepository legacyGroupRepository;
 
     @Transactional
     public GroupResult create(GroupCreateCommand command) {
-        GroupEntity newGroupEntity = GroupEntity.of(
+        LegacyGroupEntity newLegacyGroupEntity = LegacyGroupEntity.of(
                 command.name(),
                 command.campaignId(),
                 command.userId(),
                 command.linkUrl());
-        return GroupResult.from(groupRepository.save(newGroupEntity));
+        return GroupResult.from(legacyGroupRepository.save(newLegacyGroupEntity));
     }
 
     public GroupResult find(Long id) {
         return GroupResult.from(findById(id));
     }
 
-    private GroupEntity findById(Long id) {
-        return groupRepository.findById(id)
+    private LegacyGroupEntity findById(Long id) {
+        return legacyGroupRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
     @Transactional
     public GroupResult updateName(Long id, String name) {
-        GroupEntity groupEntity = findById(id);
-        groupEntity.updateName(name);
-        return GroupResult.from(groupRepository.save(groupEntity));
+        LegacyGroupEntity legacyGroupEntity = findById(id);
+        legacyGroupEntity.updateName(name);
+        return GroupResult.from(legacyGroupRepository.save(legacyGroupEntity));
     }
 
     @Transactional
     public GroupResult updateLinkUrl(Long id, String linkUrl) {
-        GroupEntity groupEntity = findById(id);
-        groupEntity.updateLinkUrl(linkUrl);
-        return GroupResult.from(groupRepository.save(groupEntity));
+        LegacyGroupEntity legacyGroupEntity = findById(id);
+        legacyGroupEntity.updateLinkUrl(linkUrl);
+        return GroupResult.from(legacyGroupRepository.save(legacyGroupEntity));
     }
 
     @Transactional
     public GroupResult delete(Long id) {
-        GroupEntity groupEntity = findById(id);
-        groupEntity.delete();
-        return GroupResult.from(groupRepository.save(groupEntity));
+        LegacyGroupEntity legacyGroupEntity = findById(id);
+        legacyGroupEntity.delete();
+        return GroupResult.from(legacyGroupRepository.save(legacyGroupEntity));
     }
 }

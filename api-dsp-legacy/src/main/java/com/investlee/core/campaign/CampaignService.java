@@ -1,7 +1,7 @@
 package com.investlee.core.campaign;
 
-import com.investlee.domain.campaign.CampaignEntity;
-import com.investlee.domain.campaign.CampaignRepository;
+import com.investlee.domain.campaign.LegacyCampaignEntity;
+import com.investlee.domain.campaign.LegacyCampaignRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CampaignService {
 
-    private final CampaignRepository campaignRepository;
+    private final LegacyCampaignRepository legacyCampaignRepository;
 
     @Transactional
     public CampaignResult create(CampaignCreateCommand command) {
-        CampaignEntity newCampaignEntity = CampaignEntity.of(command.name(), command.userId(),
+        LegacyCampaignEntity newLegacyCampaignEntity = LegacyCampaignEntity.of(command.name(), command.userId(),
                 command.budget());
-        return CampaignResult.from(campaignRepository.save(newCampaignEntity));
+        return CampaignResult.from(legacyCampaignRepository.save(newLegacyCampaignEntity));
     }
 
     public CampaignResult find(Long id) {
@@ -25,28 +25,28 @@ public class CampaignService {
 
     }
 
-    private CampaignEntity findById(Long id) {
-        return campaignRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    private LegacyCampaignEntity findById(Long id) {
+        return legacyCampaignRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
     @Transactional
     public CampaignResult updateName(Long id, String name) {
-        CampaignEntity campaignEntity = findById(id);
-        campaignEntity.updateName(name);
-        return CampaignResult.from(campaignRepository.save(campaignEntity));
+        LegacyCampaignEntity legacyCampaignEntity = findById(id);
+        legacyCampaignEntity.updateName(name);
+        return CampaignResult.from(legacyCampaignRepository.save(legacyCampaignEntity));
     }
 
     @Transactional
     public CampaignResult updateBudget(Long id, Long budget) {
-        CampaignEntity campaignEntity = findById(id);
-        campaignEntity.updateBudget(budget);
-        return CampaignResult.from(campaignRepository.save(campaignEntity));
+        LegacyCampaignEntity legacyCampaignEntity = findById(id);
+        legacyCampaignEntity.updateBudget(budget);
+        return CampaignResult.from(legacyCampaignRepository.save(legacyCampaignEntity));
     }
 
     @Transactional
     public CampaignResult delete(Long id) {
-        CampaignEntity campaignEntity = findById(id);
-        campaignEntity.delete();
-        return CampaignResult.from(campaignRepository.save(campaignEntity));
+        LegacyCampaignEntity legacyCampaignEntity = findById(id);
+        legacyCampaignEntity.delete();
+        return CampaignResult.from(legacyCampaignRepository.save(legacyCampaignEntity));
     }
 }

@@ -1,6 +1,6 @@
 package com.investlee.core.campaign;
 
-import com.investlee.domain.campaign.CampaignEntity;
+import com.investlee.domain.campaign.LegacyCampaignEntity;
 
 import java.time.LocalDateTime;
 
@@ -12,14 +12,14 @@ public record CampaignResult(
         LocalDateTime createdAt,
         LocalDateTime updatedAt,
         LocalDateTime deletedAt) {
-    public static CampaignResult from(CampaignEntity campaignEntity) {
+    public static CampaignResult from(LegacyCampaignEntity legacyCampaignEntity) {
         return new CampaignResult(
-                campaignEntity.getId(),
-                campaignEntity.getName(),
-                campaignEntity.getUserId(),
-                campaignEntity.getBudget(),
-                campaignEntity.getCreatedAt(),
-                campaignEntity.getUpdatedAt(),
-                campaignEntity.getDeletedAt());
+                legacyCampaignEntity.getId(),
+                legacyCampaignEntity.getName(),
+                legacyCampaignEntity.getUserId(),
+                legacyCampaignEntity.getBudget(),
+                legacyCampaignEntity.getCreatedAt(),
+                legacyCampaignEntity.getUpdatedAt(),
+                legacyCampaignEntity.getDeletedAt());
     }
 }
