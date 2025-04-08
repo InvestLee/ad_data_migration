@@ -30,7 +30,7 @@ public class MigrationUserEntity extends AbstractAggregateRoot<MigrationUserEnti
         this.status = MigrationUserStatus.AGREED;
         this.agreedAt = agreedAt;
         this.updateAt = agreedAt;
-        registerEvent(new MigrationAgreedEventMigration(this));
+        registerEvent(new MigrationAgreedEvent(this));
     }
 
     public static MigrationUserEntity agreed(Long id) {
@@ -45,7 +45,7 @@ public class MigrationUserEntity extends AbstractAggregateRoot<MigrationUserEnti
             status = status.next();
         }
         updateAt = LocalDateTime.now();
-        registerEvent(new MigrationProgressedEventMigration(this));
+        registerEvent(new MigrationProgressedEvent(this));
     }
 
     public void retry() {
@@ -54,6 +54,6 @@ public class MigrationUserEntity extends AbstractAggregateRoot<MigrationUserEnti
             status = MigrationUserStatus.RETRIED;
         }
         updateAt = LocalDateTime.now();
-        registerEvent(new MigrationRetriedEventMigration(this));
+        registerEvent(new MigrationRetriedEvent(this));
     }
 }

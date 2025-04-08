@@ -2,4 +2,5 @@ rootProject.name = 'ad-data-migration'
 include 'api-dsp-legacy'
 include 'api-mgn-gradual'
 include 'core-mgn'
+include 'api_mgn_internal'
 
